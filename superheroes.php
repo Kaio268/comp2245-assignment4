@@ -65,8 +65,53 @@ $superheroes = [
 
 ?>
 
+
 <ul>
 <?php foreach ($superheroes as $superhero): ?>
   <li><?= $superhero['alias']; ?></li>
 <?php endforeach; ?>
 </ul>
+
+<?php
+if($_SERVER['REQUEST_METHOD'] == 'POST')
+{
+
+    $searchQuery = $_POST['search'];
+
+    if(empty($searchQuery))
+{
+        echo "<h1 style=color:blue>The Hero's</h1>";
+        echo "<hr>";
+        echo "<ul>";
+        foreach ($superheroes as $superhero){
+            echo "<li>" . $superhero['name'] . "</li>";
+        }
+        echo "</ul>";
+    }
+
+    else
+{
+        $found = true;
+        foreach ($superheroes as $superhero)
+{
+            if( ($superhero['name'] == $searchQuery) || ($superhero['alias'] == $searchQuery) )
+{
+                $found = true;
+                echo "<h1 style=color:Green>Results</h1>";
+                echo "<hr>";
+                echo "<h3 class=\heroalias\>" . $superhero['alias'] . "</h3>";
+                echo "<h4 class=\heroname\>" . $superhero['name'] . "</h4>";
+                echo "<p class=\bio\>" . $superhero['biography'] . "</p>";
+                break;
+            }
+        }
+        if($found = false)
+{
+            echo "<h1>Result</h1>";
+            echo "<hr>";
+            echo "<h4 class=\notfound\ style=color: Red>Superhero not found</h4>";
+        }
+
+    }
+}
+ ?>

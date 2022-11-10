@@ -1,0 +1,58 @@
+header h1 {
+    font-size: 18px;
+}
+
+#header{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #63B3ED;
+    color: #FFFFFF;
+    gap: 10px;
+    padding: .5rem;
+}
+
+#header .name{
+    border-radius: 50%;
+    font-size: 36px;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+* {
+    box-sizing: border-box;
+  }
+
+form input[type=search]{
+    padding: 10px;
+    font-size: 17px;
+    border: 1px solid grey;
+    float: left;
+    width: 50%;
+    background: #f1f1f1;
+  } 
+
+  button {
+    float: left;
+    width: 10%;
+    padding: 10px;
+    background: #f32121;
+    color: white;
+    font-size: 17px;
+    border: 1px solid grey;
+    border-left: none; 
+    cursor: pointer;
+  } 
+  
+  
+  
+  button:hover {
+    background: #0b7dda;
+  }
+
+ 
+  
+  
+ 
+   
+  
