@@ -72,11 +72,23 @@ $superheroes = [
 <?php endforeach; ?>
 </ul>
 
+
+
 <?php
+
+function sanitization($data)
+{
+    $data = htmlspecialchars($data);
+    $data = stripslashes($data);
+    $data = trim($data);
+    return $data;
+}
+
 if($_SERVER['REQUEST_METHOD'] == 'POST')
 {
 
-    $searchQuery = $_POST['search'];
+  $UserInput = $_POST['search'];
+    $searchQuery = sanitization($UserInput);
 
     if(empty($searchQuery))
 {
@@ -91,7 +103,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST')
 
     else
 {
-        $found = true;
+        $found = false;
         foreach ($superheroes as $superhero)
 {
             if( ($superhero['name'] == $searchQuery) || ($superhero['alias'] == $searchQuery) )
@@ -100,17 +112,17 @@ if($_SERVER['REQUEST_METHOD'] == 'POST')
                 echo "<h1 style=color:Green>Results</h1>";
                 echo "<hr>";
                 echo "<h3 class=\heroalias\>" . $superhero['alias'] . "</h3>";
-                echo "<h4 class=\heroname\>" . $superhero['name'] . "</h4>";
+                echo "<h4 class=\heroname\> A.K.A. " . $superhero['name'] . "</h4>";
                 echo "<p class=\bio\>" . $superhero['biography'] . "</p>";
                 break;
-            }
+            }}
         }
-        if($found = false)
+        if($found == false)
 {
             echo "<h1>Result</h1>";
             echo "<hr>";
             echo "<h4 class=\notfound\ style=color: Red>Superhero not found</h4>";
-        }
+        
 
     }
 }
